@@ -1,0 +1,624 @@
+/* =========================
+   THEME (White + Blue + Grey + Black)
+========================= */
+:root {
+  --bg: #f8fafc; /* light grey background */
+  --panel: #ffffff; /* primary white */
+  --border: #e2e8f0; /* neutral grey border */
+  --text: #0f172a; /* black-ish */
+  --muted: #64748b; /* grey text */
+  --blue: #2563eb; /* secondary blue */
+  --blue-soft: #dbeafe; /* soft blue background */
+  --bot: #f1f5f9; /* grey bubble */
+  --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  --radius: 18px;
+}
+
+/* ✅ DARK THEME OVERRIDES */
+body.dark {
+  --bg: #0b1220;
+  --panel: #0f172a;
+  --border: rgba(255, 255, 255, 0.12);
+  --text: #e5e7eb;
+  --muted: rgba(229, 231, 235, 0.6);
+  --blue: #3b82f6;
+  --blue-soft: rgba(59, 130, 246, 0.18);
+  --bot: rgba(255, 255, 255, 0.06);
+  --shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+}
+
+/* ✅ Global body colors */
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+/*. MAIN LAYOUT. */
+
+.appShell {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+
+/* ✅ Top Header */
+.topHeader {
+  height: 64px;
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* ✅ left title + right toggle */
+  padding: 10px 18px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+/* Left title wrapper stays same */
+.topHeaderTitle {
+  font-size: 1.05rem;
+  font-weight: 900;
+  color: var(--text);
+}
+
+.topHeaderSub {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+/* ✅ Sidebar + Chat */
+.layoutBody {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.chatWrap {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+/* ✅ Empty screen */
+.emptyState {
+  flex: 1;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  padding: 40px;
+  color: var(--muted);
+}
+
+.emptyState h2 {
+  margin: 0;
+  color: var(--text);
+}
+
+.emptyState p {
+  margin-top: 8px;
+  max-width: 460px;
+}
+
+/* Old layout class (safe to keep)
+.layout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+} */
+
+/* =========================
+   DARK MODE TOGGLE SWITCH
+========================= */
+.themeToggleWrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.themeLabel {
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.themeSwitch {
+  width: 54px;
+  height: 30px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(148, 163, 184, 0.35);
+  cursor: pointer;
+  padding: 3px;
+  display: flex;
+  align-items: center;
+  transition: 0.2s ease;
+}
+
+body.dark .themeSwitch {
+  background: rgba(255, 255, 255, 0.10);
+}
+
+.themeSwitch.on {
+  background: var(--blue);
+}
+
+.themeKnob {
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  background: #ffffff;
+  transition: transform 0.2s ease;
+  transform: translateX(0px);
+}
+
+.themeSwitch.on .themeKnob {
+  transform: translateX(22px);
+}
+
+/* =========================
+   SIDEBAR BASE
+========================= */
+.sidebar {
+  width: 320px;
+  min-width: 320px;
+  max-width: 320px;
+  background: var(--panel);
+  color: var(--text);
+  padding: 16px;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+/* ✅ Sidebar Header */
+.sidebarHeader {
+  padding: 12px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.05);
+  background: linear-gradient(
+    135deg,
+    rgba(37, 99, 235, 0.10),
+    rgba(255, 255, 255, 1)
+  );
+}
+
+/* ✅ Dark sidebar header gradient fix */
+body.dark .sidebarHeader {
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.18),
+    rgba(15, 23, 42, 1)
+  );
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
+}
+
+.sidebarTitleRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebarLogoDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: var(--blue);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+body.dark .sidebarLogoDot {
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.18);
+}
+
+.sidebarTitle {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.sidebarSubtitle {
+  margin-top: 4px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* ✅ Primary button */
+.sidebarPrimaryBtn {
+  width: 100%;
+  border: none;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: var(--blue);
+  color: white;
+  cursor: pointer;
+  font-weight: 800;
+  transition: 0.2s ease;
+  margin-top: 2px;
+}
+
+.sidebarPrimaryBtn:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
+/* ✅ Section Title */
+.sidebarSectionTitle {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 4px;
+}
+
+/* ✅ Sidebar chat list */
+.sidebarList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sidebarItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 12px;
+  border-radius: 14px;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  transition: 0.18s ease;
+}
+
+.sidebarItem:hover {
+  background: rgba(37, 99, 235, 0.06);
+  border-color: rgba(37, 99, 235, 0.25);
+}
+
+body.dark .sidebarItem:hover {
+  background: rgba(59, 130, 246, 0.10);
+  border-color: rgba(59, 130, 246, 0.30);
+}
+
+.sidebarItem.active {
+  background: var(--blue-soft);
+  border-color: rgba(37, 99, 235, 0.35);
+}
+
+body.dark .sidebarItem.active {
+  border-color: rgba(59, 130, 246, 0.40);
+}
+
+.sidebarItemText {
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* ✅ Delete chat button */
+.sidebarDeleteBtn {
+  border: none;
+  background: transparent;
+  color: #ef4444;
+  font-size: 16px;
+  font-weight: 900;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 6px 10px;
+  transition: 0.15s ease;
+}
+
+.sidebarDeleteBtn:hover {
+  background: rgba(239, 68, 68, 0.12);
+}
+
+/* =========================
+   CHAT AREA
+========================= */
+.chat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 18px;
+  gap: 14px;
+  overflow: hidden;
+}
+
+/* Messages container */
+.messages {
+  flex: 1;
+  background: var(--panel);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 16px;
+  overflow: auto;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================
+   MESSAGE BUBBLES
+========================= */
+.msg {
+  padding: 10px 14px;
+  margin: 10px 0;
+  border-radius: 18px;
+  max-width: min(70%, 640px);
+  line-height: 1.5;
+  font-size: 0.98rem;
+  border: 1px solid var(--border);
+  box-shadow: 0 3px 10px rgba(15, 23, 42, 0.04);
+  color: var(--text);
+}
+
+.msg.user {
+  background: var(--blue-soft);
+  border-color: rgba(37, 99, 235, 0.2);
+  align-self: flex-end;
+}
+
+body.dark .msg.user {
+  border-color: rgba(59, 130, 246, 0.35);
+}
+
+.msg.bot {
+  background: var(--bot);
+  align-self: flex-start;
+}
+
+/* ✅ Markdown content improvements */
+.msgContent {
+  width: 100%;
+}
+
+.msgContent p {
+  margin: 0;
+}
+
+.msgContent p + p {
+  margin-top: 10px;
+}
+
+/* Sources box */
+.sources {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: rgba(15, 23, 42, 0.03);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+body.dark .sources {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.sources strong {
+  color: var(--text);
+}
+
+.sources ul {
+  margin: 6px 0 0;
+  padding-left: 18px;
+}
+
+/* =========================
+   INPUT BAR
+========================= */
+.inputRow {
+  display: flex;
+  gap: 10px;
+  padding: 12px;
+  background: var(--panel);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  align-items: center;
+}
+
+/* ✅ This is for the new textarea input */
+.chatInput {
+  flex: 1;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  outline: none;
+  background: var(--panel);
+  color: var(--text);
+  font-size: 1rem;
+  resize: none;
+  min-height: 46px;
+  line-height: 1.4;
+  font-family: inherit;
+}
+
+.chatInput::placeholder {
+  color: var(--muted);
+}
+
+.chatInput:focus {
+  border-color: rgba(37, 99, 235, 0.55);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+body.dark .chatInput:focus {
+  border-color: rgba(59, 130, 246, 0.55);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+}
+
+/* Button base */
+button {
+  border-radius: 14px;
+  border: none;
+  padding: 12px 16px;
+  font-size: 1rem;
+  font-weight: 800;
+  background: var(--blue);
+  color: white;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+button:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
+button:disabled,button:disabled:hover {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Stop button */
+button.stop {
+  background: #0f172a;
+}
+
+body.dark button.stop {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--text);
+}
+
+/* Cursor + typing */
+.cursor {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.typing {
+  font-size: 12px;
+  opacity: 0.6;
+  margin: 6px 0;
+  color: var(--muted);
+}
+
+/* =========================
+   INGEST PANEL (Sidebar Card)
+========================= */
+
+.ingestCard {
+  border: 1px solid var(--border);
+  background: var(--panel);
+  border-radius: 16px;
+  padding: 12px;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  width: 100%;
+  max-width: 100%;
+}
+
+body.dark .ingestCard {
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
+}
+
+.ingestCardHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ingestTitle {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.ingestHint {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.ingestBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ingestLabel {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.ingestInput {
+  width: 100%;
+  max-width: 100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  outline: none;
+  font-size: 0.95rem;
+  background: var(--panel);
+  color: var(--text);
+}
+
+/* ✅ Fixes ugly file input spacing */
+.ingestInput[type="file"] {
+  padding: 8px;
+}
+
+.ingestInput:focus {
+  border-color: rgba(37, 99, 235, 0.55);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+body.dark .ingestInput:focus {
+  border-color: rgba(59, 130, 246, 0.55);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+}
+
+.ingestActionBtn {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 800;
+  cursor: pointer;
+  background: var(--blue);
+  color: white;
+  transition: 0.15s ease;
+}
+
+.ingestActionBtn:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
+.ingestStatus {
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(15, 23, 42, 0.03);
+  color: var(--text);
+}
+
+body.dark .ingestStatus {
+  background: rgba(255, 255, 255, 0.04);
+}
